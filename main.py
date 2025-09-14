@@ -9,9 +9,15 @@ import gdown
 
 url = 'https://drive.google.com/uc?id=17JuyW-wAZxlwRXNj6HXs_4SByIUJ_-9k'
 output = "model.h5"
-gdown.download(url, output, quiet=False)
+# gdown.download(url, output, quiet=False)
 
 model_path = f'model.h5'
+
+if not os.path.exists(model_path):
+    print("Model not found. Downloading from Google Drive...")
+    gdown.download(url, output, quiet=False)
+else:
+    print("Model already exists. Skipping download.")
 
 print(model_path)
 
